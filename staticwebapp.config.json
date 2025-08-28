@@ -1,11 +1,25 @@
 {
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/api/*"]
-  },
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/404.html"
+  "routes": [
+    {
+      "route": "/",
+      "redirect": "/login",
+      "allowedMethods": ["GET", "HEAD", "OPTIONS", "POST"],
+      "allowedHeaders": [
+        "Content-Type",
+        "Authorization",
+        "X-Custom-Header"
+      ],
+      "responseOverrides": {
+        "400": {
+          "statusCode": 400,
+          "rewrite": "/400.html"
+        }
+      }
     }
+  ],
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS, POST",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Custom-Header"
   }
 }
